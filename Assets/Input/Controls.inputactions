@@ -1,0 +1,52 @@
+{
+    "name": "Controls",
+    "maps": [
+        {
+            "name": "General",
+            "id": "a79c35cf-33e1-47c5-8df5-8ee6dca44411",
+            "actions": [
+                {
+                    "name": "Target Position",
+                    "type": "Value",
+                    "id": "0d3715b4-2459-44eb-853d-7bda815b5c3b",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Target Direction",
+                    "type": "Value",
+                    "id": "a8f86a2a-ba8f-4e04-9afd-2017cdbd8589",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "fe1161d7-211c-40bd-8550-e5ab7eaaf536",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Target Position",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1baeba8f-b12f-4f52-8816-3b8fabb821a3",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Target Direction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
