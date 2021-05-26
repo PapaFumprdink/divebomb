@@ -3,8 +3,12 @@ using UnityEngine.InputSystem;
 
 [SelectionBase]
 [DisallowMultipleComponent]
-public sealed class PlayerController : MonoBehaviour
+public sealed class PlayerController : MonoBehaviour, IWeaponProvider
 {
+    private const float Deadzone = 0.1f;
+
+    public event System.Action<int, bool> FireEvent;
+
     [SerializeField] private bool m_UseGamepad;
 
     private Controls m_Controls;
@@ -26,12 +30,15 @@ public sealed class PlayerController : MonoBehaviour
             }
         }
     }
+    public bool EnginesCut => m_Controls.General.CutEngines.ReadValue<float>() > Deadzone;
 
     private void Awake()
     {
         m_MainCamera = Camera.main;
 
         m_Controls = new Controls();
+
+        m_Controls.General.FirePrimary.performed += (ctx) => FireEvent?.Invoke(0, true);
     }
 
     private void OnEnable()
@@ -42,5 +49,10 @@ public sealed class PlayerController : MonoBehaviour
     private void OnDisable()
     {
         m_Controls.Disable();
+    }
+
+    private void Update()
+    {
+        if (m_Controls.General.FirePrimary.ReadValue<float>() > Deadzone) FireEvent?.Invoke(0, false);
     }
 }

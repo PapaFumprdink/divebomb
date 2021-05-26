@@ -33,6 +33,22 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Cut Engines"",
+                    ""type"": ""Button"",
+                    ""id"": ""9d41d489-5fd2-4db1-b53f-5f68ebcc19ee"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Fire Primary"",
+                    ""type"": ""Button"",
+                    ""id"": ""b75caf00-0769-44c9-9e28-df95d11b6bd6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -57,6 +73,28 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""Target Direction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""63bd6f6d-1ade-4bdc-b70d-5faf4e9821a8"",
+                    ""path"": ""<Keyboard>/z"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cut Engines"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f039cdce-9d09-4467-9315-f7dd50b64bf5"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fire Primary"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -67,6 +105,8 @@ public class @Controls : IInputActionCollection, IDisposable
         m_General = asset.FindActionMap("General", throwIfNotFound: true);
         m_General_TargetPosition = m_General.FindAction("Target Position", throwIfNotFound: true);
         m_General_TargetDirection = m_General.FindAction("Target Direction", throwIfNotFound: true);
+        m_General_CutEngines = m_General.FindAction("Cut Engines", throwIfNotFound: true);
+        m_General_FirePrimary = m_General.FindAction("Fire Primary", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -118,12 +158,16 @@ public class @Controls : IInputActionCollection, IDisposable
     private IGeneralActions m_GeneralActionsCallbackInterface;
     private readonly InputAction m_General_TargetPosition;
     private readonly InputAction m_General_TargetDirection;
+    private readonly InputAction m_General_CutEngines;
+    private readonly InputAction m_General_FirePrimary;
     public struct GeneralActions
     {
         private @Controls m_Wrapper;
         public GeneralActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @TargetPosition => m_Wrapper.m_General_TargetPosition;
         public InputAction @TargetDirection => m_Wrapper.m_General_TargetDirection;
+        public InputAction @CutEngines => m_Wrapper.m_General_CutEngines;
+        public InputAction @FirePrimary => m_Wrapper.m_General_FirePrimary;
         public InputActionMap Get() { return m_Wrapper.m_General; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -139,6 +183,12 @@ public class @Controls : IInputActionCollection, IDisposable
                 @TargetDirection.started -= m_Wrapper.m_GeneralActionsCallbackInterface.OnTargetDirection;
                 @TargetDirection.performed -= m_Wrapper.m_GeneralActionsCallbackInterface.OnTargetDirection;
                 @TargetDirection.canceled -= m_Wrapper.m_GeneralActionsCallbackInterface.OnTargetDirection;
+                @CutEngines.started -= m_Wrapper.m_GeneralActionsCallbackInterface.OnCutEngines;
+                @CutEngines.performed -= m_Wrapper.m_GeneralActionsCallbackInterface.OnCutEngines;
+                @CutEngines.canceled -= m_Wrapper.m_GeneralActionsCallbackInterface.OnCutEngines;
+                @FirePrimary.started -= m_Wrapper.m_GeneralActionsCallbackInterface.OnFirePrimary;
+                @FirePrimary.performed -= m_Wrapper.m_GeneralActionsCallbackInterface.OnFirePrimary;
+                @FirePrimary.canceled -= m_Wrapper.m_GeneralActionsCallbackInterface.OnFirePrimary;
             }
             m_Wrapper.m_GeneralActionsCallbackInterface = instance;
             if (instance != null)
@@ -149,6 +199,12 @@ public class @Controls : IInputActionCollection, IDisposable
                 @TargetDirection.started += instance.OnTargetDirection;
                 @TargetDirection.performed += instance.OnTargetDirection;
                 @TargetDirection.canceled += instance.OnTargetDirection;
+                @CutEngines.started += instance.OnCutEngines;
+                @CutEngines.performed += instance.OnCutEngines;
+                @CutEngines.canceled += instance.OnCutEngines;
+                @FirePrimary.started += instance.OnFirePrimary;
+                @FirePrimary.performed += instance.OnFirePrimary;
+                @FirePrimary.canceled += instance.OnFirePrimary;
             }
         }
     }
@@ -157,5 +213,7 @@ public class @Controls : IInputActionCollection, IDisposable
     {
         void OnTargetPosition(InputAction.CallbackContext context);
         void OnTargetDirection(InputAction.CallbackContext context);
+        void OnCutEngines(InputAction.CallbackContext context);
+        void OnFirePrimary(InputAction.CallbackContext context);
     }
 }
