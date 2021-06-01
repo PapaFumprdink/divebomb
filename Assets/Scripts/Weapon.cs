@@ -8,16 +8,19 @@ public abstract class Weapon : MonoBehaviour
 
     private void Awake()
     {
+        // Get all required components
         m_Provider = GetComponentInParent<IWeaponProvider>();
     }
 
     private void OnEnable()
     {
+        // Subscribe to all input events when the component is enabled
         m_Provider.FireEvent += OnFire;
     }
 
     private void OnDisable()
     {
+        // Unsubscribe to all input events when the component is disabled
         m_Provider.FireEvent -= OnFire;
     }
 
