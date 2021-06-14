@@ -53,6 +53,8 @@ public class Projectile : MonoBehaviour, IShootable
             RaycastHit2D hit = Physics2D.Raycast(m_Rigidbody.position, m_Rigidbody.velocity, speed + SkinWidth, m_Layermask);
             if (hit)
             {
+                bool didHit = false;
+
                 // If an object is hit that isnt the object that instanced this.
                 if (hit.transform.gameObject != Shooter)
                 {
@@ -72,7 +74,11 @@ public class Projectile : MonoBehaviour, IShootable
 
                     // Destroy the projectile if we hit something.
                     Destroy(gameObject);
+
+                    didHit = true;
                 }
+
+                print($"Hit Object ({hit.transform.name}) | Shooter ({Shooter.name}) | Did Hit ({didHit})");
             }
         }
     }

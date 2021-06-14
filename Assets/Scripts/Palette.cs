@@ -11,15 +11,6 @@ public class Palette : PostProcessEffectSettings
     public TextureParameter m_BlendMask = new TextureParameter();
     [Range(0f, 1f)]
     public FloatParameter m_PaletteBlend = new FloatParameter();
-
-    public void GetPaletteTones (out Color highTone, out Color midTone, out Color lowTone)
-    {
-        Texture2D palette = (Texture2D)m_PaletteTexture;
-
-        lowTone = palette.GetPixel(0, 0);
-        midTone = palette.GetPixel(Mathf.FloorToInt(palette.width * 0.5f), 0);
-        highTone = palette.GetPixel(palette.width - 1, 0);
-    }
 }
 
 public sealed class PaletteRenderer : PostProcessEffectRenderer<Palette>

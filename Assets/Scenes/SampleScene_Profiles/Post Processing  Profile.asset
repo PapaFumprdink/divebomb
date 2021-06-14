@@ -32,11 +32,11 @@ MonoBehaviour:
     value: 1
   m_PaletteTexture:
     overrideState: 1
-    value: {fileID: 2800000, guid: 1379cbc0e693f7b489c7bbf3a6116579, type: 3}
+    value: {fileID: 2800000, guid: 61ab2812edcc00149b8382239e6ad804, type: 3}
     defaultState: 1
   m_OldPaletteTexture:
     overrideState: 1
-    value: {fileID: 2800000, guid: 4738d3faaa5090a4ab8beb8a39fc8883, type: 3}
+    value: {fileID: 2800000, guid: 1379cbc0e693f7b489c7bbf3a6116579, type: 3}
     defaultState: 1
   m_BlendMask:
     overrideState: 1
@@ -44,4 +44,4 @@ MonoBehaviour:
     defaultState: 1
   m_PaletteBlend:
     overrideState: 1
-    value: 1
+    value: 0

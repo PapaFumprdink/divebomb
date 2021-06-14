@@ -49,6 +49,22 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Repair"",
+                    ""type"": ""Button"",
+                    ""id"": ""2c29debc-84cc-42a0-a37b-041e028a22fb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""TimeSlowDebug"",
+                    ""type"": ""Button"",
+                    ""id"": ""b74b6dd1-7b9e-44ee-b30d-9b096f902597"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -95,6 +111,28 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""Fire Primary"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5b532262-6fcb-47b4-8f09-fe12233ed199"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Repair"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ff39da98-11af-4dac-a43f-06f26d448887"",
+                    ""path"": ""<Keyboard>/capsLock"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TimeSlowDebug"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -107,6 +145,8 @@ public class @Controls : IInputActionCollection, IDisposable
         m_General_TargetDirection = m_General.FindAction("Target Direction", throwIfNotFound: true);
         m_General_CutEngines = m_General.FindAction("Cut Engines", throwIfNotFound: true);
         m_General_FirePrimary = m_General.FindAction("Fire Primary", throwIfNotFound: true);
+        m_General_Repair = m_General.FindAction("Repair", throwIfNotFound: true);
+        m_General_TimeSlowDebug = m_General.FindAction("TimeSlowDebug", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -160,6 +200,8 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_General_TargetDirection;
     private readonly InputAction m_General_CutEngines;
     private readonly InputAction m_General_FirePrimary;
+    private readonly InputAction m_General_Repair;
+    private readonly InputAction m_General_TimeSlowDebug;
     public struct GeneralActions
     {
         private @Controls m_Wrapper;
@@ -168,6 +210,8 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @TargetDirection => m_Wrapper.m_General_TargetDirection;
         public InputAction @CutEngines => m_Wrapper.m_General_CutEngines;
         public InputAction @FirePrimary => m_Wrapper.m_General_FirePrimary;
+        public InputAction @Repair => m_Wrapper.m_General_Repair;
+        public InputAction @TimeSlowDebug => m_Wrapper.m_General_TimeSlowDebug;
         public InputActionMap Get() { return m_Wrapper.m_General; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -189,6 +233,12 @@ public class @Controls : IInputActionCollection, IDisposable
                 @FirePrimary.started -= m_Wrapper.m_GeneralActionsCallbackInterface.OnFirePrimary;
                 @FirePrimary.performed -= m_Wrapper.m_GeneralActionsCallbackInterface.OnFirePrimary;
                 @FirePrimary.canceled -= m_Wrapper.m_GeneralActionsCallbackInterface.OnFirePrimary;
+                @Repair.started -= m_Wrapper.m_GeneralActionsCallbackInterface.OnRepair;
+                @Repair.performed -= m_Wrapper.m_GeneralActionsCallbackInterface.OnRepair;
+                @Repair.canceled -= m_Wrapper.m_GeneralActionsCallbackInterface.OnRepair;
+                @TimeSlowDebug.started -= m_Wrapper.m_GeneralActionsCallbackInterface.OnTimeSlowDebug;
+                @TimeSlowDebug.performed -= m_Wrapper.m_GeneralActionsCallbackInterface.OnTimeSlowDebug;
+                @TimeSlowDebug.canceled -= m_Wrapper.m_GeneralActionsCallbackInterface.OnTimeSlowDebug;
             }
             m_Wrapper.m_GeneralActionsCallbackInterface = instance;
             if (instance != null)
@@ -205,6 +255,12 @@ public class @Controls : IInputActionCollection, IDisposable
                 @FirePrimary.started += instance.OnFirePrimary;
                 @FirePrimary.performed += instance.OnFirePrimary;
                 @FirePrimary.canceled += instance.OnFirePrimary;
+                @Repair.started += instance.OnRepair;
+                @Repair.performed += instance.OnRepair;
+                @Repair.canceled += instance.OnRepair;
+                @TimeSlowDebug.started += instance.OnTimeSlowDebug;
+                @TimeSlowDebug.performed += instance.OnTimeSlowDebug;
+                @TimeSlowDebug.canceled += instance.OnTimeSlowDebug;
             }
         }
     }
@@ -215,5 +271,7 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnTargetDirection(InputAction.CallbackContext context);
         void OnCutEngines(InputAction.CallbackContext context);
         void OnFirePrimary(InputAction.CallbackContext context);
+        void OnRepair(InputAction.CallbackContext context);
+        void OnTimeSlowDebug(InputAction.CallbackContext context);
     }
 }

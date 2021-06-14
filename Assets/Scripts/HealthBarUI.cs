@@ -11,12 +11,7 @@ public sealed class HealthBarUI : MonoBehaviour
     [Space]
     [SerializeField] private Image m_Fill;
     [SerializeField] private Image m_DifferenceFill;
-    [SerializeField] private Image m_Border;
-    [SerializeField] private TMPro.TMP_Text m_Label;
     [SerializeField] private float m_DifferenceFillSmoothing;
-
-    [Space]
-    [SerializeField] private PostProcessProfile m_DefaultPostProcessProfile;
 
     private IDamagable m_Target;
 
@@ -34,19 +29,6 @@ public sealed class HealthBarUI : MonoBehaviour
 
             // Set the difference fill to a smoothed out version of the health bar.
             m_DifferenceFill.fillAmount = Mathf.Lerp(m_DifferenceFill.fillAmount, m_Target.NormalizedHealth, m_DifferenceFillSmoothing * Time.deltaTime);
-
-            // Get the palette component 
-            if (m_DefaultPostProcessProfile.TryGetSettings(out Palette palette))
-            {
-                // Get pallete tones
-                palette.GetPaletteTones(out Color highTone, out Color midTone, out Color lowTone);
-
-                // Set the visual components to the appropriate color.
-                m_Fill.color = midTone;
-                m_DifferenceFill.color = highTone;
-                m_Border.color = highTone;
-                m_Label.color = highTone;
-            }
         }
     }
 }

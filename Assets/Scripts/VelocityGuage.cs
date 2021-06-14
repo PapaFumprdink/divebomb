@@ -11,15 +11,11 @@ public sealed class VelocityGuage : MonoBehaviour
 
     [SerializeField] private Rigidbody2D m_Target;
     [SerializeField] private Image m_Indicator;
-    [SerializeField] private Image m_Border;
     [SerializeField] private AnimationCurve m_ScaleCurve;
 
     [Space]
     [SerializeField] private TMPro.TMP_Text m_SpeedDisplay;
     [SerializeField] private string m_SpeedDisplayText;
-
-    [Space]
-    [SerializeField] private PostProcessProfile m_DefaultPostProcessVolume;
 
     private List<float> m_SpeedSamples;
 
@@ -58,18 +54,6 @@ public sealed class VelocityGuage : MonoBehaviour
 
             // Set the display text to the average speed to 1 decimal place.
             m_SpeedDisplay.text = string.Format(m_SpeedDisplayText, Mathf.Round(averageSpeed * 10f) / 10f);
-
-            // Get the palette component 
-            if (m_DefaultPostProcessVolume.TryGetSettings(out Palette palette))
-            {
-                // Get pallete tones
-                palette.GetPaletteTones(out Color highTone, out Color midTone, out Color lowTone);
-
-                // Set the visual components to the appropriate color.
-                m_Indicator.color = midTone;
-                m_Border.color = highTone;
-                m_SpeedDisplay.color = highTone;
-            }
         }
     }
 }

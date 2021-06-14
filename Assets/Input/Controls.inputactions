@@ -36,6 +36,22 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Repair",
+                    "type": "Button",
+                    "id": "2c29debc-84cc-42a0-a37b-041e028a22fb",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "TimeSlowDebug",
+                    "type": "Button",
+                    "id": "b74b6dd1-7b9e-44ee-b30d-9b096f902597",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -80,6 +96,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Fire Primary",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5b532262-6fcb-47b4-8f09-fe12233ed199",
+                    "path": "<Keyboard>/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Repair",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ff39da98-11af-4dac-a43f-06f26d448887",
+                    "path": "<Keyboard>/capsLock",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TimeSlowDebug",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
