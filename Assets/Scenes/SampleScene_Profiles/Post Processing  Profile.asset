@@ -44,4 +44,4 @@ MonoBehaviour:
     defaultState: 1
   m_PaletteBlend:
     overrideState: 1
-    value: 0
+    value: 1

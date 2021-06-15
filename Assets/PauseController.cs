@@ -16,12 +16,8 @@ public sealed class PauseController : MonoBehaviour
     {
         m_Controller = GetComponent<PlayerController>();
 
-        m_Controller.CancelEvent += OnCancel;
-    }
-
-    private void OnCancel()
-    {
-        TogglePause();
+        m_Controller.CancelEvent += TogglePause;
+        Unpause();
     }
 
     public void Pause ()
@@ -45,6 +41,11 @@ public sealed class PauseController : MonoBehaviour
     private void UpdatePauseMenu()
     {
         Time.timeScale = m_Paused ? 0f : 1f;
-        m_PauseMenu.SetActive(m_PauseMenu);
+        m_PauseMenu.SetActive(m_Paused);
+    }
+
+    public void QuitGame ()
+    {
+        // TODO
     }
 }

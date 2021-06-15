@@ -8,6 +8,7 @@ public sealed class Mine : MonoBehaviour, IDamagable
     [SerializeField] private float m_Damage;
     [SerializeField] private float m_DamageRange;
     [SerializeField] private float m_ArmTime;
+    [SerializeField] private float m_FuzeTime;
     [SerializeField] private Transform m_ExplosionFX;
 
     private float m_SpawnTime;
@@ -39,6 +40,14 @@ public sealed class Mine : MonoBehaviour, IDamagable
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Detonate();
+    }
+
+    private void Update()
+    {
+        if (Time.time > m_SpawnTime + m_FuzeTime && !m_HasDetonated)
+        {
+            Detonate();
+        }
     }
 
     private void Detonate()
