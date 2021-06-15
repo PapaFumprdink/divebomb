@@ -7,6 +7,8 @@ using UnityEngine;
 [DisallowMultipleComponent]
 public sealed class EnemyManager : MonoBehaviour
 {
+    const bool DrawGUI = false;
+
     List<EnemyInstance> m_EnemyInstances;
 
     [SerializeField] private float m_DelayBetweenUpdates;
@@ -198,23 +200,26 @@ public sealed class EnemyManager : MonoBehaviour
         m_SpawnMinRange = Mathf.Min(m_SpawnMinRange, m_SpawnMaxRange);
     }
 
+#if UNITY_EDITOR
     private void OnGUI()
     {
-#if UNITY_EDITOR
-        string debugLog = string.Empty;
-        if (m_DebugLog != null)
+        if (DrawGUI)
         {
-            foreach (string debugLine in m_DebugLog)
+            string debugLog = string.Empty;
+            if (m_DebugLog != null)
             {
-                debugLog += $"{debugLine}\n";
+                foreach (string debugLine in m_DebugLog)
+                {
+                    debugLog += $"{debugLine}\n";
+                }
             }
+            else
+            {
+                debugLog = "--Debug Log Not Initalized--";
+            }
+            GUI.Box(new Rect(0, 0, Screen.width, 128), debugLog);
+            GUI.backgroundColor = new Color(0, 0, 0, 0);
         }
-        else
-        {
-            debugLog = "--Debug Log Not Initalized--";
-        }
-        GUI.Box(new Rect(0, 0, Screen.width, 128), debugLog);
-        GUI.backgroundColor = new Color(0, 0, 0, 0);
-#endif
     }
+#endif
 }

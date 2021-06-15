@@ -30,7 +30,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Fire Primary",
+                    "name": "Fire",
                     "type": "Button",
                     "id": "b75caf00-0769-44c9-9e28-df95d11b6bd6",
                     "expectedControlType": "Button",
@@ -49,6 +49,14 @@
                     "name": "TimeSlowDebug",
                     "type": "Button",
                     "id": "b74b6dd1-7b9e-44ee-b30d-9b096f902597",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Cancel",
+                    "type": "Button",
+                    "id": "fcd227a4-e7ba-42f7-9f76-e5bb1bc7363a",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -93,9 +101,20 @@
                     "id": "f039cdce-9d09-4467-9315-f7dd50b64bf5",
                     "path": "<Keyboard>/a",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "Scale",
                     "groups": "",
-                    "action": "Fire Primary",
+                    "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ec0c9903-ba8c-4c4e-9054-d46bf6077afd",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "Scale(factor=2)",
+                    "groups": "",
+                    "action": "Fire",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -118,6 +137,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "TimeSlowDebug",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5d3367be-30c6-4ae6-9d82-003524b8deeb",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Cancel",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

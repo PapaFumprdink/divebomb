@@ -50,7 +50,12 @@ public class Projectile : MonoBehaviour, IShootable
         {
             // Otherwise, raycast forwards for collision detection
             float speed = m_Rigidbody.velocity.magnitude * Time.deltaTime;
-            RaycastHit2D hit = Physics2D.Raycast(m_Rigidbody.position, m_Rigidbody.velocity, speed + SkinWidth, m_Layermask);
+
+            ContactFilter2D filter = new ContactFilter2D { useTriggers = false, layerMask = m_Layermask};
+            RaycastHit2D[] hits = new RaycastHit2D[1];
+            Physics2D.Raycast(m_Rigidbody.position, m_Rigidbody.velocity, filter, hits, speed + SkinWidth);
+            RaycastHit2D hit = hits[0];
+
             if (hit)
             {
                 bool didHit = false;

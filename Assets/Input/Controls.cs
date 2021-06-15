@@ -43,7 +43,7 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Fire Primary"",
+                    ""name"": ""Fire"",
                     ""type"": ""Button"",
                     ""id"": ""b75caf00-0769-44c9-9e28-df95d11b6bd6"",
                     ""expectedControlType"": ""Button"",
@@ -62,6 +62,14 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""name"": ""TimeSlowDebug"",
                     ""type"": ""Button"",
                     ""id"": ""b74b6dd1-7b9e-44ee-b30d-9b096f902597"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Cancel"",
+                    ""type"": ""Button"",
+                    ""id"": ""fcd227a4-e7ba-42f7-9f76-e5bb1bc7363a"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -106,9 +114,20 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""id"": ""f039cdce-9d09-4467-9315-f7dd50b64bf5"",
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""Scale"",
                     ""groups"": """",
-                    ""action"": ""Fire Primary"",
+                    ""action"": ""Fire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ec0c9903-ba8c-4c4e-9054-d46bf6077afd"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=2)"",
+                    ""groups"": """",
+                    ""action"": ""Fire"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -133,6 +152,17 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""TimeSlowDebug"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5d3367be-30c6-4ae6-9d82-003524b8deeb"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -144,9 +174,10 @@ public class @Controls : IInputActionCollection, IDisposable
         m_General_TargetPosition = m_General.FindAction("Target Position", throwIfNotFound: true);
         m_General_TargetDirection = m_General.FindAction("Target Direction", throwIfNotFound: true);
         m_General_CutEngines = m_General.FindAction("Cut Engines", throwIfNotFound: true);
-        m_General_FirePrimary = m_General.FindAction("Fire Primary", throwIfNotFound: true);
+        m_General_Fire = m_General.FindAction("Fire", throwIfNotFound: true);
         m_General_Repair = m_General.FindAction("Repair", throwIfNotFound: true);
         m_General_TimeSlowDebug = m_General.FindAction("TimeSlowDebug", throwIfNotFound: true);
+        m_General_Cancel = m_General.FindAction("Cancel", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -199,9 +230,10 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_General_TargetPosition;
     private readonly InputAction m_General_TargetDirection;
     private readonly InputAction m_General_CutEngines;
-    private readonly InputAction m_General_FirePrimary;
+    private readonly InputAction m_General_Fire;
     private readonly InputAction m_General_Repair;
     private readonly InputAction m_General_TimeSlowDebug;
+    private readonly InputAction m_General_Cancel;
     public struct GeneralActions
     {
         private @Controls m_Wrapper;
@@ -209,9 +241,10 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @TargetPosition => m_Wrapper.m_General_TargetPosition;
         public InputAction @TargetDirection => m_Wrapper.m_General_TargetDirection;
         public InputAction @CutEngines => m_Wrapper.m_General_CutEngines;
-        public InputAction @FirePrimary => m_Wrapper.m_General_FirePrimary;
+        public InputAction @Fire => m_Wrapper.m_General_Fire;
         public InputAction @Repair => m_Wrapper.m_General_Repair;
         public InputAction @TimeSlowDebug => m_Wrapper.m_General_TimeSlowDebug;
+        public InputAction @Cancel => m_Wrapper.m_General_Cancel;
         public InputActionMap Get() { return m_Wrapper.m_General; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -230,15 +263,18 @@ public class @Controls : IInputActionCollection, IDisposable
                 @CutEngines.started -= m_Wrapper.m_GeneralActionsCallbackInterface.OnCutEngines;
                 @CutEngines.performed -= m_Wrapper.m_GeneralActionsCallbackInterface.OnCutEngines;
                 @CutEngines.canceled -= m_Wrapper.m_GeneralActionsCallbackInterface.OnCutEngines;
-                @FirePrimary.started -= m_Wrapper.m_GeneralActionsCallbackInterface.OnFirePrimary;
-                @FirePrimary.performed -= m_Wrapper.m_GeneralActionsCallbackInterface.OnFirePrimary;
-                @FirePrimary.canceled -= m_Wrapper.m_GeneralActionsCallbackInterface.OnFirePrimary;
+                @Fire.started -= m_Wrapper.m_GeneralActionsCallbackInterface.OnFire;
+                @Fire.performed -= m_Wrapper.m_GeneralActionsCallbackInterface.OnFire;
+                @Fire.canceled -= m_Wrapper.m_GeneralActionsCallbackInterface.OnFire;
                 @Repair.started -= m_Wrapper.m_GeneralActionsCallbackInterface.OnRepair;
                 @Repair.performed -= m_Wrapper.m_GeneralActionsCallbackInterface.OnRepair;
                 @Repair.canceled -= m_Wrapper.m_GeneralActionsCallbackInterface.OnRepair;
                 @TimeSlowDebug.started -= m_Wrapper.m_GeneralActionsCallbackInterface.OnTimeSlowDebug;
                 @TimeSlowDebug.performed -= m_Wrapper.m_GeneralActionsCallbackInterface.OnTimeSlowDebug;
                 @TimeSlowDebug.canceled -= m_Wrapper.m_GeneralActionsCallbackInterface.OnTimeSlowDebug;
+                @Cancel.started -= m_Wrapper.m_GeneralActionsCallbackInterface.OnCancel;
+                @Cancel.performed -= m_Wrapper.m_GeneralActionsCallbackInterface.OnCancel;
+                @Cancel.canceled -= m_Wrapper.m_GeneralActionsCallbackInterface.OnCancel;
             }
             m_Wrapper.m_GeneralActionsCallbackInterface = instance;
             if (instance != null)
@@ -252,15 +288,18 @@ public class @Controls : IInputActionCollection, IDisposable
                 @CutEngines.started += instance.OnCutEngines;
                 @CutEngines.performed += instance.OnCutEngines;
                 @CutEngines.canceled += instance.OnCutEngines;
-                @FirePrimary.started += instance.OnFirePrimary;
-                @FirePrimary.performed += instance.OnFirePrimary;
-                @FirePrimary.canceled += instance.OnFirePrimary;
+                @Fire.started += instance.OnFire;
+                @Fire.performed += instance.OnFire;
+                @Fire.canceled += instance.OnFire;
                 @Repair.started += instance.OnRepair;
                 @Repair.performed += instance.OnRepair;
                 @Repair.canceled += instance.OnRepair;
                 @TimeSlowDebug.started += instance.OnTimeSlowDebug;
                 @TimeSlowDebug.performed += instance.OnTimeSlowDebug;
                 @TimeSlowDebug.canceled += instance.OnTimeSlowDebug;
+                @Cancel.started += instance.OnCancel;
+                @Cancel.performed += instance.OnCancel;
+                @Cancel.canceled += instance.OnCancel;
             }
         }
     }
@@ -270,8 +309,9 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnTargetPosition(InputAction.CallbackContext context);
         void OnTargetDirection(InputAction.CallbackContext context);
         void OnCutEngines(InputAction.CallbackContext context);
-        void OnFirePrimary(InputAction.CallbackContext context);
+        void OnFire(InputAction.CallbackContext context);
         void OnRepair(InputAction.CallbackContext context);
         void OnTimeSlowDebug(InputAction.CallbackContext context);
+        void OnCancel(InputAction.CallbackContext context);
     }
 }
