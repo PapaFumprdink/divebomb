@@ -18,6 +18,10 @@ public class ProjectileWeapon : Weapon
 
     private float m_NextFireTime;
 
+    public override float Cooldown => m_NextFireTime - Time.time;
+
+    public override float NormalizedCooldown => Mathf.Clamp01(Cooldown / (60f / m_RateOfFire));
+
     protected override void Fire(bool down)
     {
         // Check if enough time has passed since the last fire time and that the single fire condition lines up with whether the input was just pressed.

@@ -38,7 +38,7 @@ public class Projectile : MonoBehaviour, IShootable
         }
     }
 
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         // increment the age, if we have passed our lifetime, destroy the bullet.
         m_Age += Time.deltaTime;
@@ -82,8 +82,6 @@ public class Projectile : MonoBehaviour, IShootable
 
                     didHit = true;
                 }
-
-                print($"Hit Object ({hit.transform.name}) | Shooter ({Shooter.name}) | Did Hit ({didHit})");
             }
         }
     }

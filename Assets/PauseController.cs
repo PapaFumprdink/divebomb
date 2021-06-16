@@ -1,23 +1,34 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 [SelectionBase]
 [DisallowMultipleComponent]
-[RequireComponent(typeof(PlayerController))]
 public sealed class PauseController : MonoBehaviour
 {
-    [SerializeField] private GameObject m_PauseMenu;
+    [SerializeField] private UnityEvent m_OnPause;
+    [SerializeField] private UnityEvent m_OnResume;
 
-    private PlayerController m_Controller;
+    private Controls m_Controls;
     private bool m_Paused;
 
     private void Awake()
     {
-        m_Controller = GetComponent<PlayerController>();
+        m_Controls = new Controls();
+        m_Controls.General.Cancel.performed += (ctx) => TogglePause();
 
-        m_Controller.CancelEvent += TogglePause;
         Unpause();
+    }
+
+    private void OnEnable()
+    {
+        m_Controls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        m_Controls.Disable();
     }
 
     public void Pause ()
@@ -41,7 +52,9 @@ public sealed class PauseController : MonoBehaviour
     private void UpdatePauseMenu()
     {
         Time.timeScale = m_Paused ? 0f : 1f;
-        m_PauseMenu.SetActive(m_Paused);
+
+        if (m_Paused) m_OnPause?.Invoke();
+        else m_OnResume?.Invoke();
     }
 
     public void QuitGame ()

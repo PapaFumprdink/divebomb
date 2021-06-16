@@ -18,7 +18,7 @@ Shader "Hidden/PostProcess/Palette"
         float4 paletteColor = SAMPLE_TEXTURE2D(_Palette, sampler_Palette, float2(sampleSpace, 0.5));
         float4 oldPaletteColor = SAMPLE_TEXTURE2D(_OldPalette, sampler_OldPalette, float2(sampleSpace, 0.5));
         float4 paletteBlend = SAMPLE_TEXTURE2D(_BlendMask, sampler_BlendMask, i.texcoord);
-        float4 finalColor = lerp(oldPaletteColor, paletteColor, paletteBlend < _Blend);
+        float4 finalColor = lerp(oldPaletteColor, paletteColor, clamp(40 * (paletteBlend - (_Blend * 1.2 - 0.1)), 0, 1));
 
         return finalColor;
     }

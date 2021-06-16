@@ -6,6 +6,9 @@ public abstract class Weapon : MonoBehaviour
     
     protected IWeaponProvider m_Provider;
 
+    public abstract float Cooldown { get; }
+    public abstract float NormalizedCooldown { get; }
+
     private void Awake()
     {
         // Get all required components

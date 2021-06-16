@@ -4,22 +4,18 @@ using UnityEngine;
 
 [SelectionBase]
 [DisallowMultipleComponent]
-public sealed class EnemyChase : MonoBehaviour, IMovementProvider, IWeaponProvider
+public sealed class EnemyChase : EnemyBase, IMovementProvider
 {
-    public event System.Action<int, bool> FireEvent;
-
     [Range(-1f, 1f)][SerializeField] private float m_AttackDot;
     [SerializeField] private float m_AttackRange;
     [SerializeField] private float m_FleeMax;
     [SerializeField] private float m_FleeMin;
 
     private Camera m_MainCamera;
-    private EnemyChaceDebugData m_DebugData;
     private bool m_IsFleeing;
 
     public bool EnginesCut { get; private set; }
     public float Steering { get; private set; }
-    public GameObject CurrentTarget { get; private set; }
 
     private void Awake()
     {
@@ -43,7 +39,7 @@ public sealed class EnemyChase : MonoBehaviour, IMovementProvider, IWeaponProvid
                 m_DebugData.state = "Chasing";
             }
 
-            if (vectorToTarget.sqrMagnitude < m_FleeMin * m_FleeMin)
+            if (vectorToTarget.sqrMagnitude < m_FleeMin * m_FleeMin || ForceFleeDuration > 0f)
             {
                 m_IsFleeing = true;
                 m_DebugData.state = "Fleeing";
@@ -60,7 +56,7 @@ public sealed class EnemyChase : MonoBehaviour, IMovementProvider, IWeaponProvid
 
             if (dotToTarget > m_AttackDot && vectorToTarget.sqrMagnitude < m_AttackRange * m_AttackRange && isInCamera)
             {
-                FireEvent?.Invoke(0, false);
+                Fire(0, false);
                 m_DebugData.state = "Firing";
             }
 
@@ -97,24 +93,5 @@ public sealed class EnemyChase : MonoBehaviour, IMovementProvider, IWeaponProvid
         Gizmos.DrawRay(transform.position, steerDirection);
 
         Gizmos.color = Color.white;
-    }
-
-    struct EnemyChaceDebugData
-    {
-        public string name;
-        public string targetName;
-        public float distanceToTarget;
-        public string state;
-
-        public void DrawDebug (Vector2 drawPosition)
-        {
-            string debugText = $"{name}\nTarget: {targetName}, {distanceToTarget}m away\nCurrently {state}";
-
-#if UNITY_EDITOR
-            GUIStyle style = new GUIStyle();
-            style.normal.textColor = Color.black;
-            Handles.Label(drawPosition, debugText, style);
-#endif
-        }
     }
 }

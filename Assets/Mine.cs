@@ -88,7 +88,7 @@ public sealed class Mine : MonoBehaviour, IDamagable
         Damage(damage, killer, point, direction);
     }
 
-    private void OnDrawGizmosSelected()
+    private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, m_DamageRange);
