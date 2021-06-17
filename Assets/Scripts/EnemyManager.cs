@@ -35,6 +35,9 @@ public sealed class EnemyManager : MonoBehaviour
     [Space]
     [Range(0f, 1f)][SerializeField] private float m_PressureSmoothing;
 
+    [Space]
+    [SerializeField] private float m_WaterLevel;
+
     private float m_NextUpdateTime;
     private float m_GameTime;
 
@@ -52,6 +55,7 @@ public sealed class EnemyManager : MonoBehaviour
         public float weight;
         public float pressure;
         public float minPressureThreshold;
+        public int deathScore;
     }
 
     private struct EnemyInstance
@@ -159,11 +163,10 @@ public sealed class EnemyManager : MonoBehaviour
         {
             Vector2 randomVector = Random.insideUnitCircle;
             Vector2 position = (Vector2)targetPlayer.transform.position + randomVector.normalized * m_SpawnMinRange + randomVector * (m_SpawnMaxRange - m_SpawnMinRange);
-
-            return SpawnRandomEnemy(position);
+            if (position.y > m_WaterLevel) return SpawnRandomEnemy(position);
         }
 
-        else return default;
+        return default;
     }
 
     private EnemyInstance SpawnRandomEnemy(Vector2 position)
@@ -200,6 +203,14 @@ public sealed class EnemyManager : MonoBehaviour
         // Instance the enemy and add it to the tracking list.
         EnemyInstance newInstance = new EnemyInstance(Instantiate(profile.prefab, position, Quaternion.identity), profile.pressure);
         m_TrackedEnemies.Add(newInstance);
+
+        if (newInstance.instance.TryGetComponent(out IDamagable damagable))
+        {
+            damagable.DeathEvent += (damage, damager, point, direction) =>
+            {
+                ScoreCounter.AddScoreStatic(profile.deathScore);
+            };
+        }
 
         return newInstance;
     }

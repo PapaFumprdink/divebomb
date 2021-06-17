@@ -14,7 +14,7 @@ public sealed class EnemyChase : EnemyBase, IMovementProvider
     private Camera m_MainCamera;
     private bool m_IsFleeing;
 
-    public bool EnginesCut { get; private set; }
+    public bool EnginesCut => false;
     public float Steering { get; private set; }
 
     private void Awake()

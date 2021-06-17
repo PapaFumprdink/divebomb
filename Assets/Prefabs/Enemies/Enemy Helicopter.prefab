@@ -4963,6 +4963,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_DestructionFX: {fileID: 8659325708959232305}
+  m_CanSurviveInWater: 0
+  m_WaterSurvivalDuration: 0
+  m_WaterDamage: 10000
+  m_WaterDamageFrequency: 0.1
 --- !u!114 &8659325707685145304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4977,8 +4981,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_MovementSpeed: 120
   m_AccelerationTime: 1
-  m_DistanceFromTarget: 25
-  m_FireRange: 2
+  m_IdleRange: 35
+  m_FollowRange: 65
   m_RotationalSmoothing: 3
 --- !u!1 &8659325708455547133
 GameObject:
@@ -5091,9 +5095,9 @@ MonoBehaviour:
   m_Muzzle: {fileID: 8659325709078303985}
   m_Shooter: {fileID: 8659325707685145305}
   m_SingleFire: 0
-  m_RateOfFire: 120
+  m_RateOfFire: 30
   m_Spray: 180
-  m_ProjectilesPerShot: 1
+  m_ProjectilesPerShot: 5
   m_FireEvent:
     m_PersistentCalls:
       m_Calls: []

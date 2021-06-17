@@ -248,6 +248,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   m_ThrustDrag: 4
   m_FreefallDrag: 0.25
+  m_FlapsDrag: 0
   m_AfterburnerPower: 120
   m_EnginesCutEvent:
     m_PersistentCalls:
@@ -293,6 +294,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_CurrentHealth: 40
   m_MaxHealth: 40
+  m_DestroyOnDeath: 0
   m_InvincibilityTime: 0
   m_HitstopDuration: 0
   m_DamageUnityEvent:
@@ -302,6 +304,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_DestructionFX: {fileID: 8669235360638946530}
+  m_CanSurviveInWater: 0
+  m_WaterSurvivalDuration: 0
+  m_WaterDamage: 10000
+  m_WaterDamageFrequency: 0.1
 --- !u!114 &8669235361915131659
 MonoBehaviour:
   m_ObjectHideFlags: 0

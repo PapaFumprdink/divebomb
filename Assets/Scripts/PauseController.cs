@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 [SelectionBase]
 [DisallowMultipleComponent]
@@ -9,6 +10,9 @@ public sealed class PauseController : MonoBehaviour
 {
     [SerializeField] private UnityEvent m_OnPause;
     [SerializeField] private UnityEvent m_OnResume;
+
+    [Space]
+    [SerializeField] private SceneList m_SceneList;
 
     private Controls m_Controls;
     private bool m_Paused;
@@ -60,8 +64,14 @@ public sealed class PauseController : MonoBehaviour
         else m_OnResume?.Invoke();
     }
 
+    public void ReloadGame ()
+    {
+        SceneManager.LoadScene(m_SceneList.GameSceneIndex);
+        ScoreCounter.ResetScore();
+    }
+
     public void QuitGame ()
     {
-        // TODO
+        //SceneManager.LoadScene(m_SceneList.MenuSceneIndex);
     }
 }

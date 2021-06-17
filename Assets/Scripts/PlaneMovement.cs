@@ -16,6 +16,7 @@ public sealed class PlaneMovement : MonoBehaviour
     [Space]
     [SerializeField] private float m_ThrustDrag;
     [SerializeField] private float m_FreefallDrag;
+    [SerializeField] private float m_FlapsDrag;
 
     [Space]
     [SerializeField] private float m_AfterburnerPower;

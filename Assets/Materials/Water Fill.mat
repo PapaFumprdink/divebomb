@@ -59,6 +59,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _ReflectionTex:
+        m_Texture: {fileID: 8400000, guid: 1dfa40c2140d4e449be050e4f972470a, type: 2}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
     - _BumpScale: 1
@@ -84,4 +88,6 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _NoiseScale: {r: 0.25, g: 2, b: 1, a: 1}
+    - _ReflectionPos: {r: 0, g: -120, b: 0, a: 0}
+    - _ReflectionSize: {r: 65, g: 65, b: 1, a: 1}
   m_BuildTextureStacks: []

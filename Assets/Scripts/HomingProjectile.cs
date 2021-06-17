@@ -23,8 +23,12 @@ public sealed class HomingProjectile : Projectile, ITargetable
             // If we have a display component, draw a line to the target.
             if (m_TargetDisplay)
             {
-                m_TargetDisplay.SetPosition(0, transform.position);
-                m_TargetDisplay.SetPosition(1, Target.position);
+                for (int i = 0; i < m_TargetDisplay.positionCount; i++)
+                {
+                    float percent = (float)i / (m_TargetDisplay.positionCount - 1);
+                    m_TargetDisplay.SetPosition(i, Vector2.Lerp(transform.position, Target.position, percent));
+                }
+
                 m_TargetDisplay.enabled = true;
             }
         }

@@ -13,6 +13,8 @@ public sealed class PlayerController : MonoBehaviour, IMovementProvider, IWeapon
     public event DamageAction DamageEvent;
     public event DamageAction DeathEvent;
 
+    [SerializeField] private GameObject m_GameOverMenu;
+
     private Controls m_Controls;
     private Camera m_MainCamera;
     private IDamagable m_HealthComponent;
@@ -40,6 +42,9 @@ public sealed class PlayerController : MonoBehaviour, IMovementProvider, IWeapon
     private void Awake()
     {
         m_HealthComponent = GetComponent<IDamagable>();
+
+        m_GameOverMenu.SetActive(false);
+        m_HealthComponent.DeathEvent += (damage, damager, point, direction) => m_GameOverMenu.SetActive(true);
 
         // Store the main Camera for performance
         m_MainCamera = Camera.main;
