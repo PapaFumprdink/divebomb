@@ -5,13 +5,15 @@ using UnityEngine.Events;
 
 [SelectionBase]
 [DisallowMultipleComponent]
-public class Health : MonoBehaviour, IDamagable
+public class Health : MonoBehaviour, IDamagable, IWaterInterator
 {
     public event DamageAction DamageEvent;
     public event DamageAction DeathEvent;
 
     [SerializeField] private float m_CurrentHealth;
     [SerializeField] private float m_MaxHealth;
+
+    [SerializeField] private bool m_DestroyOnDeath;
 
     [Space]
     [SerializeField] private float m_InvincibilityTime;
@@ -26,7 +28,16 @@ public class Health : MonoBehaviour, IDamagable
     [Space]
     [SerializeField] private GameObject m_DestructionFX;
 
+    [Space]
+    [SerializeField] private bool m_CanSurviveInWater;
+    [SerializeField] private float m_WaterSurvivalDuration;
+    [SerializeField] private float m_WaterDamage;
+    [SerializeField] private float m_WaterDamageFrequency;
+
     private float m_LastDamageTime;
+    private float m_EnteredWaterTime;
+    private bool m_IsInWater;
+    private float m_NextWaterDamage;
 
     public float CurrentHealth => m_CurrentHealth;
     public float MaxHealth => m_MaxHealth;
@@ -44,6 +55,18 @@ public class Health : MonoBehaviour, IDamagable
             m_DestructionFX.transform.parent = transform;
             m_DestructionFX.transform.localPosition = Vector3.zero;
             m_DestructionFX.transform.localRotation = Quaternion.identity;
+        }
+    }
+
+    private void Update()
+    {
+        if (m_IsInWater && Time.time - m_EnteredWaterTime > m_WaterSurvivalDuration && !m_CanSurviveInWater)
+        {
+            if (Time.time > m_NextWaterDamage)
+            {
+                Damage(m_WaterDamage / m_WaterDamageFrequency, gameObject, transform.position, Vector2.up);
+                m_NextWaterDamage = Time.time + 1f / m_WaterDamageFrequency;
+            }
         }
     }
 
@@ -93,11 +116,24 @@ public class Health : MonoBehaviour, IDamagable
 
         // Call the event and disable the gameObject as to not break references.
         DeathEvent?.Invoke(damage, killer, point, direction);
-        gameObject.SetActive(false);
+
+        if (m_DestroyOnDeath) Destroy(gameObject);
+        else gameObject.SetActive(false);
     }
 
     public void HealOneShot(float health, GameObject healer)
     {
         m_CurrentHealth = Mathf.Clamp(m_CurrentHealth + health, 0f, m_MaxHealth);
+    }
+
+    public void EnterWater()
+    {
+        m_IsInWater = true;
+        m_EnteredWaterTime = Time.time;
+    }
+
+    public void ExitWater()
+    {
+        m_IsInWater = false;
     }
 }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3425816517253843353}
   - component: {fileID: 3425816517253843359}
   - component: {fileID: 3425816517253843356}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cloud 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ImpactFX: {fileID: 3425816517373083452}
-  m_TrailFX: {fileID: 0}
 --- !u!60 &3425816517253843356
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -153,7 +152,7 @@ GameObject:
   - component: {fileID: 3425816517373083454}
   - component: {fileID: 3425816517373083452}
   - component: {fileID: 3425816517373083455}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bullet Impact FX
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -219,7 +219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64f54ea49e60a74469aef10711c30ad2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MovementSpeed: 60
+  m_MovementSpeed: 80
   m_MovementAcceleration: 120
   m_TurnSpeed: -360
   m_InputCurve:
@@ -293,6 +293,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_CurrentHealth: 40
   m_MaxHealth: 40
+  m_InvincibilityTime: 0
   m_HitstopDuration: 0
   m_DamageUnityEvent:
     m_PersistentCalls:

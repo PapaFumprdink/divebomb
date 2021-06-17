@@ -19,7 +19,7 @@ public class Projectile : MonoBehaviour, IShootable
     [Space]
     [SerializeField] private GameObject[] m_HitFX;
 
-    private Rigidbody2D m_Rigidbody;
+    protected Rigidbody2D m_Rigidbody;
     private float m_Age;
 
     public GameObject Shooter { get; set; }
@@ -51,15 +51,10 @@ public class Projectile : MonoBehaviour, IShootable
             // Otherwise, raycast forwards for collision detection
             float speed = m_Rigidbody.velocity.magnitude * Time.deltaTime;
 
-            ContactFilter2D filter = new ContactFilter2D { useTriggers = false, layerMask = m_Layermask};
-            RaycastHit2D[] hits = new RaycastHit2D[1];
-            Physics2D.Raycast(m_Rigidbody.position, m_Rigidbody.velocity, filter, hits, speed + SkinWidth);
-            RaycastHit2D hit = hits[0];
+            RaycastHit2D hit = Physics2D.Raycast(m_Rigidbody.position, m_Rigidbody.velocity, speed + SkinWidth, m_Layermask);
 
             if (hit)
             {
-                bool didHit = false;
-
                 // If an object is hit that isnt the object that instanced this.
                 if (hit.transform.gameObject != Shooter)
                 {
@@ -79,11 +74,11 @@ public class Projectile : MonoBehaviour, IShootable
 
                     // Destroy the projectile if we hit something.
                     Destroy(gameObject);
-
-                    didHit = true;
                 }
             }
         }
+
+        transform.up = m_Rigidbody.velocity.normalized;
     }
 
     private void Decay()

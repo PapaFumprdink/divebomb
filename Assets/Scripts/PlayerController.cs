@@ -8,7 +8,7 @@ public sealed class PlayerController : MonoBehaviour, IMovementProvider, IWeapon
 {
     public static List<PlayerController> PlayerInstances = new List<PlayerController>();
 
-    public event System.Action<int, bool> FireEvent;
+    public event System.Action<int, bool, GameObject> FireEvent;
     public event System.Action CancelEvent;
     public event DamageAction DamageEvent;
     public event DamageAction DeathEvent;
@@ -51,11 +51,13 @@ public sealed class PlayerController : MonoBehaviour, IMovementProvider, IWeapon
         {
             if (!Repairing)
             {
-                FireEvent?.Invoke((int)ctx.ReadValue<float>() - 1, true);
+                EnemyBase closestEnemy = GetClosesEnemyToMouse();
+                FireEvent?.Invoke((int)ctx.ReadValue<float>() - 1, true, closestEnemy ? closestEnemy.gameObject : null);
             }
         };
 
 #if UNITY_EDITOR
+        // Bind the debug controls only if in the unity editor.
         m_Controls.General.TimeSlowDebug.performed += (ctx) =>
         {
             Time.timeScale = 0.1f;
@@ -92,7 +94,37 @@ public sealed class PlayerController : MonoBehaviour, IMovementProvider, IWeapon
         // Invoke any input events that are held.
         if (m_Controls.General.Fire.ReadValue<float>() > InputDeadzone && !Repairing)
         {
-            FireEvent?.Invoke((int)m_Controls.General.Fire.ReadValue<float>() - 1, false);
+            EnemyBase closestEnemy = GetClosesEnemyToMouse();
+            FireEvent?.Invoke((int)m_Controls.General.Fire.ReadValue<float>() - 1, false, closestEnemy ? closestEnemy.gameObject : null);
         }
+    }
+
+    private EnemyBase GetClosesEnemyToMouse ()
+    {
+        // Calculate the world space mouse position.
+        Vector2 mousePos = Mouse.current.position.ReadValue();
+        Vector2 worldPos = m_MainCamera.ScreenToWorldPoint(mousePos);
+
+        EnemyBase bestEnemy = null;
+
+        // Loop through all of the instanced enemies and check which one is closest.
+        foreach (EnemyBase enemy in EnemyBase.EnemyInstances)
+        {
+            if (!bestEnemy)
+            {
+                bestEnemy = enemy;
+            }
+            else 
+            {
+                float distanceToEnemy = ((Vector2)enemy.transform.position - worldPos).sqrMagnitude;
+                float distanceToBestEnemy = ((Vector2)bestEnemy.transform.position - worldPos).sqrMagnitude;
+                if (distanceToEnemy < distanceToBestEnemy)
+                {
+                    bestEnemy = enemy;
+                }
+            }
+        }
+
+        return bestEnemy;
     }
 }

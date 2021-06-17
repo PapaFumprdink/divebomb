@@ -27,13 +27,14 @@ public abstract class Weapon : MonoBehaviour
         m_Provider.FireEvent -= OnFire;
     }
 
-    private void OnFire(int weaponIndex, bool down)
+    private void OnFire(int weaponIndex, bool down, GameObject target)
     {
+        // If this weapon was specified to fire, do so
         if (m_WeaponIndex == weaponIndex)
         {
-            Fire(down);
+            Fire(down, target);
         }
     }
 
-    protected abstract void Fire(bool down);
+    protected abstract void Fire(bool down, GameObject target);
 }

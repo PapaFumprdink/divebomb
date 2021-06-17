@@ -22,7 +22,7 @@ public class ProjectileWeapon : Weapon
 
     public override float NormalizedCooldown => Mathf.Clamp01(Cooldown / (60f / m_RateOfFire));
 
-    protected override void Fire(bool down)
+    protected override void Fire(bool down, GameObject target)
     {
         // Check if enough time has passed since the last fire time and that the single fire condition lines up with whether the input was just pressed.
         if (m_SingleFire == down && Time.time > m_NextFireTime)
@@ -38,6 +38,11 @@ public class ProjectileWeapon : Weapon
                 if (projectileInstance.TryGetComponent(out IShootable shootable))
                 {
                     shootable.Shooter = m_Shooter ? m_Shooter : gameObject;
+                }
+
+                if (projectileInstance.TryGetComponent(out ITargetable targetable))
+                {
+                    targetable.Target = target.transform;
                 }
             }
 

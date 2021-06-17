@@ -21,6 +21,7 @@ public sealed class VelocityGuage : MonoBehaviour
 
     private void Awake()
     {
+        // Initalize the sample array.
         m_SpeedSamples = new List<float>();
     }
 

@@ -6,5 +6,5 @@ public interface IWeaponProvider
     GameObject gameObject { get; }
     Transform transform { get; }
 
-    event Action<int, bool> FireEvent;
+    event Action<int, bool, GameObject> FireEvent;
 }

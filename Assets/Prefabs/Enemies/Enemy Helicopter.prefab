@@ -4953,6 +4953,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_CurrentHealth: 200
   m_MaxHealth: 200
+  m_DestroyOnDeath: 0
   m_InvincibilityTime: 0
   m_HitstopDuration: 0
   m_DamageUnityEvent:
@@ -4974,8 +4975,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d31a67e6d849f24d9148cb4c70d2ce1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MovementSpeed: 80
-  m_AccelerationTime: 0.2
+  m_MovementSpeed: 120
+  m_AccelerationTime: 1
   m_DistanceFromTarget: 25
   m_FireRange: 2
   m_RotationalSmoothing: 3
@@ -5053,7 +5054,7 @@ GameObject:
   - component: {fileID: 8659325709078303985}
   - component: {fileID: 8659325709078303987}
   m_Layer: 0
-  m_Name: Enemy gun
+  m_Name: Helicopter gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5067,7 +5068,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8659325709078303998}
   m_LocalRotation: {x: -0, y: -0, z: 0.70710677, w: 0.7071068}
-  m_LocalPosition: {x: -1.25, y: 0.000000074505806, z: 0}
+  m_LocalPosition: {x: -0.75, y: 0.000000044703484, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8659325708455547132}
@@ -5086,12 +5087,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_WeaponIndex: 0
-  m_ProjectilePrefab: {fileID: 2677153551534568507, guid: 3716f0ca260bf974c853a19c75162cf6, type: 3}
+  m_ProjectilePrefab: {fileID: 7040028232178679544, guid: 5eb91bbae4c02b641a559ed20f76bdb9, type: 3}
   m_Muzzle: {fileID: 8659325709078303985}
   m_Shooter: {fileID: 8659325707685145305}
   m_SingleFire: 0
-  m_RateOfFire: 300
-  m_Spray: 25
+  m_RateOfFire: 120
+  m_Spray: 180
   m_ProjectilesPerShot: 1
   m_FireEvent:
     m_PersistentCalls:
