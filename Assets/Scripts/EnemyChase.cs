@@ -22,14 +22,11 @@ public sealed class EnemyChase : EnemyBase, IMovementProvider
         m_MainCamera = Camera.main;
     }
 
-    private void Update()
+    protected override void Update()
     {
-        if (!CurrentTarget)
-        {
-            // If we have no target, find one.
-            CurrentTarget = PlayerController.PlayerInstances[Random.Range(0, PlayerController.PlayerInstances.Count)].gameObject;
-        }
-        else
+        base.Update();
+
+        if (CurrentTarget)
         {
             // Calculate the dot to the target to dictate how close it is to facing the target. 
             Vector2 vectorToTarget = (CurrentTarget.transform.position - transform.position);

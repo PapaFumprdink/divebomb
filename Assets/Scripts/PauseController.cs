@@ -8,6 +8,9 @@ using UnityEngine.SceneManagement;
 [DisallowMultipleComponent]
 public sealed class PauseController : MonoBehaviour
 {
+    public static event System.Action OnGameReload;
+    public static event System.Action OnGameQuit;
+
     [SerializeField] private UnityEvent m_OnPause;
     [SerializeField] private UnityEvent m_OnResume;
 
@@ -66,12 +69,15 @@ public sealed class PauseController : MonoBehaviour
 
     public void ReloadGame ()
     {
+        OnGameReload?.Invoke();
+
         SceneManager.LoadScene(m_SceneList.GameSceneIndex);
-        ScoreCounter.ResetScore();
     }
 
     public void QuitGame ()
     {
+        OnGameQuit?.Invoke();
+
         //SceneManager.LoadScene(m_SceneList.MenuSceneIndex);
     }
 }

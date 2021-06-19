@@ -1,45 +1,80 @@
 using UnityEngine;
 using TMPro;
-using System;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
-[SelectionBase]
-[DisallowMultipleComponent]
-public sealed class ScoreCounter : MonoBehaviour
+[CreateAssetMenu(menuName = "Scriptable Objects/Score Counter")]
+public sealed class ScoreCounter : ScriptableObject
 {
-    [SerializeField] private TMP_Text[] m_DisplayTexts;
-    [SerializeField] private TMP_Text m_HighScoreText;
-    [SerializeField] private Transform m_AnimationParent;
-    [SerializeField] private AnimationCurve m_ScaleOnScore;
+    const string PlayerDataStorePath = "/Save Data/Player";
+    const string PlayerDataFileName = "/PlayerData.dbg";
 
-    private static float m_LastScoreTime;
+    private PlayerData m_PlayerData;
 
-    public static int Score { get; private set; }
+    public int Score { get; private set; }
+    public float LastScoreTime { get; private set; }
+    public int HighScore => m_PlayerData.HighScore;
 
-    public static void AddScoreStatic (int points)
+    private void OnEnable()
+    {
+        m_PlayerData = ReadPlayerData();
+        Score = 0;
+
+        PauseController.OnGameReload += ResetScore;
+    }
+
+    public void AddScore(int points)
     {
         Score += points;
-        m_LastScoreTime = Time.time;
+        LastScoreTime = Time.time;
     }
 
-    public void AddScore (int points)
+    public void ResetScore()
     {
-        AddScoreStatic(points);
-    }
-
-    private void Update()
-    {
-        foreach (TMP_Text textObject in m_DisplayTexts)
+        if (Score > HighScore)
         {
-            textObject.text = $"{Score} pts";
+            m_PlayerData.HighScore = Score;
+            SavePlayerData();
+        }
+        Score = 0;
+    }
+
+    public void SavePlayerData ()
+    {
+        if (m_PlayerData != null)
+        {
+            if (!Directory.Exists(Application.persistentDataPath + PlayerDataStorePath))
+            {
+                Directory.CreateDirectory(Application.persistentDataPath + PlayerDataStorePath);
+            }
+
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(Application.persistentDataPath + PlayerDataStorePath + PlayerDataFileName, FileMode.Create);
+
+            formatter.Serialize(stream, m_PlayerData);
+            stream.Close();
+        }
+    }
+
+    public PlayerData ReadPlayerData ()
+    {
+        if (File.Exists(Application.persistentDataPath + PlayerDataStorePath + PlayerDataFileName))
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(Application.persistentDataPath + PlayerDataStorePath + PlayerDataFileName, FileMode.Open);
+
+            PlayerData data = formatter.Deserialize(stream) as PlayerData;
+            stream.Close();
+
+            return data;
         }
 
-        m_HighScoreText.text = "High Scores yet to be Implemented";
-
-        m_AnimationParent.localScale = Vector3.one * m_ScaleOnScore.Evaluate(Time.time - m_LastScoreTime);
+        else return new PlayerData();
     }
 
-    public static void ResetScore()
+    [System.Serializable]
+    public class PlayerData
     {
-        Score = 0;
+        public int HighScore;
     }
 }

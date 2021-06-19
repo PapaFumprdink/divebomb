@@ -7,7 +7,7 @@ using UnityEngine;
 [DisallowMultipleComponent]
 public sealed class EnemyManager : MonoBehaviour
 {
-    const bool DrawGUI = true;
+    const bool DrawGUI = false;
 
     List<EnemyInstance> m_TrackedEnemies;
 
@@ -34,6 +34,9 @@ public sealed class EnemyManager : MonoBehaviour
 
     [Space]
     [Range(0f, 1f)][SerializeField] private float m_PressureSmoothing;
+
+    [Space]
+    [SerializeField] private ScoreCounter m_ScoreCounter;
 
     [Space]
     [SerializeField] private float m_WaterLevel;
@@ -208,7 +211,7 @@ public sealed class EnemyManager : MonoBehaviour
         {
             damagable.DeathEvent += (damage, damager, point, direction) =>
             {
-                ScoreCounter.AddScoreStatic(profile.deathScore);
+                m_ScoreCounter.AddScore(profile.deathScore);
             };
         }
 

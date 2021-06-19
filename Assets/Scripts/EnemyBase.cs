@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -14,7 +13,7 @@ public abstract class EnemyBase : MonoBehaviour, IWeaponProvider
     public GameObject CurrentTarget { get; set; }
     public float ForceFleeDuration { get; set; }
 
-    public event Action<int, bool, GameObject> FireEvent;
+    public event System.Action<int, bool, GameObject> FireEvent;
 
     public void Fire(int index, bool down) => FireEvent?.Invoke(index, down, CurrentTarget);
 
@@ -45,5 +44,14 @@ public abstract class EnemyBase : MonoBehaviour, IWeaponProvider
     protected virtual void OnDisable ()
     {
         EnemyInstances.Remove(this);
+    }
+
+    protected virtual void Update ()
+    {
+        if (!CurrentTarget)
+        {
+            // If we have no target, find one
+            CurrentTarget = PlayerController.PlayerInstances[Random.Range(0, PlayerController.PlayerInstances.Count)].gameObject;
+        }
     }
 }

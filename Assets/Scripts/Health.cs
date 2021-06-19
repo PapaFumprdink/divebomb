@@ -12,6 +12,7 @@ public class Health : MonoBehaviour, IDamagable, IWaterInterator
 
     [SerializeField] private float m_CurrentHealth;
     [SerializeField] private float m_MaxHealth;
+    [Range(0f, 1f)][SerializeField] private float m_DamageCapPercent = 1f;
 
     [SerializeField] private bool m_DestroyOnDeath;
 
@@ -74,6 +75,8 @@ public class Health : MonoBehaviour, IDamagable, IWaterInterator
     {
         if (Time.time >= m_LastDamageTime + m_InvincibilityTime)
         {
+            damage = Mathf.Min(damage, m_MaxHealth * m_DamageCapPercent);
+
             // Decrement the health.
             m_CurrentHealth -= damage;
 

@@ -19,14 +19,11 @@ public sealed class HelicopterController : EnemyBase
         m_Rigidbody = GetComponent<Rigidbody2D>();
     }
 
-    private void Update()
+    protected override void Update()
     {
-        if (!CurrentTarget)
-        {
-            // If we have no target, find one
-            CurrentTarget = PlayerController.PlayerInstances[Random.Range(0, PlayerController.PlayerInstances.Count)].gameObject;
-        }
-        else
+        base.Update();
+
+        if (CurrentTarget)
         {
             Vector2 vectorToTarget = (CurrentTarget.transform.position - transform.position);
 
