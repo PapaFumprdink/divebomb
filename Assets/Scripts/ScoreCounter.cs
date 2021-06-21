@@ -21,6 +21,7 @@ public sealed class ScoreCounter : ScriptableObject
         Score = 0;
 
         PauseController.OnGameReload += ResetScore;
+        PauseController.OnGameQuit += ResetScore;
     }
 
     public void AddScore(int points)

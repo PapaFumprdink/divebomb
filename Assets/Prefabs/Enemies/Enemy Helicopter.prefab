@@ -100,7 +100,7 @@ MonoBehaviour:
       m_Calls: []
   m_DestructionFX: {fileID: 6126704601156671860}
   m_CanSurviveInWater: 0
-  m_WaterSurvivalDuration: 0
+  m_WaterSurvivalDuration: 1
   m_WaterDamage: 10000
   m_WaterDamageFrequency: 0.1
 --- !u!114 &8659325707685145304

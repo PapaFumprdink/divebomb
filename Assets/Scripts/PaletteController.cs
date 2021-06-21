@@ -5,10 +5,23 @@ using UnityEngine.Rendering.PostProcessing;
 [DisallowMultipleComponent]
 public sealed class PaletteController : MonoBehaviour
 {
+    public static Texture2D CurrentPalette;
+    public static Texture2D OldPallete;
+
     [SerializeField] private float m_TranstitionDuration;
     [SerializeField] private PostProcessVolume m_VolumeController;
     
     private float m_LastChangeTime;
+
+    private void Start()
+    {
+        PostProcessProfile profile = m_VolumeController.profile;
+        if (profile.TryGetSettings(out Palette pallete))
+        {
+            if (OldPallete) pallete.m_OldPaletteTexture.value = OldPallete;
+            if (CurrentPalette) pallete.m_PaletteTexture.value = CurrentPalette;
+        }
+    }
 
     private void Update()
     {
@@ -21,11 +34,14 @@ public sealed class PaletteController : MonoBehaviour
 
     public void SetPalette (Texture2D newPallete)
     {
+        OldPallete = CurrentPalette;
+        CurrentPalette = newPallete;
+
         PostProcessProfile profile = m_VolumeController.profile;
         if (profile.TryGetSettings(out Palette pallete))
         {
-            pallete.m_OldPaletteTexture.value = pallete.m_PaletteTexture;
-            pallete.m_PaletteTexture.value = newPallete;
+            pallete.m_OldPaletteTexture.value = OldPallete;
+            pallete.m_PaletteTexture.value = CurrentPalette;
             m_LastChangeTime = Time.unscaledTime;
         }
     }

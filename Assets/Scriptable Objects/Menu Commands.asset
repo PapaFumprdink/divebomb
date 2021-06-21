@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 144db966bc509324b8ce48af2e3ca1d6, type: 3}
-  m_Name: Scene List
+  m_Script: {fileID: 11500000, guid: 75a6d91b248b9f34985671d7c63e7fda, type: 3}
+  m_Name: Menu Commands
   m_EditorClassIdentifier: 
-  MenuSceneIndex: 0
-  GameSceneIndex: 1
-  OptionsSceneIndex: 2
-  ControlsSceneIndex: 3
+  m_SceneList: {fileID: 11400000, guid: d810e34ad1f659d4d88be683c14475c9, type: 2}
+  m_Mixer: {fileID: 0}
+  m_MasterFaderParameter: 
