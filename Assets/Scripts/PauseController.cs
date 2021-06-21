@@ -78,6 +78,6 @@ public sealed class PauseController : MonoBehaviour
     {
         OnGameQuit?.Invoke();
 
-        //SceneManager.LoadScene(m_SceneList.MenuSceneIndex);
+        SceneManager.LoadScene(m_SceneList.GameSceneIndex);
     }
 }
