@@ -25,6 +25,8 @@ public class Health : MonoBehaviour, IDamagable, IWaterInterator
     [Space]
     [SerializeField] private UnityEvent m_DamageUnityEvent;
     [SerializeField] private UnityEvent m_DeathUnityEvent;
+    [SerializeField] private UnityEvent m_EnterWaterEvent;
+    [SerializeField] private UnityEvent m_ExitWaterEvent;
 
     [Space]
     [SerializeField] private GameObject m_DestructionFX;
@@ -131,12 +133,16 @@ public class Health : MonoBehaviour, IDamagable, IWaterInterator
 
     public void EnterWater()
     {
+        m_EnterWaterEvent?.Invoke();
+
         m_IsInWater = true;
         m_EnteredWaterTime = Time.time;
     }
 
     public void ExitWater()
     {
+        m_ExitWaterEvent?.Invoke();
+
         m_IsInWater = false;
     }
 }

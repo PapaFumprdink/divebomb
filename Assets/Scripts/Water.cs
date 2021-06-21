@@ -8,6 +8,9 @@ public sealed class Water : MonoBehaviour
     [SerializeField] private float m_WaterLevel;
     [SerializeField] private ParticleSystem m_EnterEffect;
     [SerializeField] private Material m_WaterMaterial;
+    [SerializeField] private AudioSource m_SplashSource;
+    [SerializeField] private AudioClip m_InClip;
+    [SerializeField] private AudioClip m_OutClip;
 
     private Camera m_MainCamera;
 
@@ -29,6 +32,9 @@ public sealed class Water : MonoBehaviour
             waterInterator.EnterWater();
         }
 
+        m_SplashSource.transform.position = collision.transform.position;
+        m_SplashSource.PlayOneShot(m_InClip);
+
         m_EnterEffect.transform.position = collision.transform.position;
         m_EnterEffect.Play();
     }
@@ -39,6 +45,9 @@ public sealed class Water : MonoBehaviour
         {
             waterInterator.ExitWater();
         }
+
+        m_SplashSource.transform.position = collision.transform.position;
+        m_SplashSource.PlayOneShot(m_OutClip);
 
         m_EnterEffect.transform.position = collision.transform.position;
         m_EnterEffect.Play();

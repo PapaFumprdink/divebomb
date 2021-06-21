@@ -89,7 +89,7 @@ public sealed class MenuCommands : ScriptableObject
     public void SetAudioVolume (float percent)
     {
         m_Settings.mainVolume = percent;
-        if (m_Mixer) m_Mixer.SetFloat(m_MasterFaderParameter, percent);
+        if (m_Mixer) m_Mixer.SetFloat(m_MasterFaderParameter, (1 - percent) * -80f);
     }
 
     public void SaveSettings ()

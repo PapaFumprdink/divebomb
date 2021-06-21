@@ -99,6 +99,12 @@ MonoBehaviour:
   m_DeathUnityEvent:
     m_PersistentCalls:
       m_Calls: []
+  m_EnterWaterEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ExitWaterEvent:
+    m_PersistentCalls:
+      m_Calls: []
   m_DestructionFX: {fileID: 6126704601156671860}
   m_CanSurviveInWater: 0
   m_WaterSurvivalDuration: 1
@@ -202,7 +208,7 @@ MonoBehaviour:
   m_SingleFire: 0
   m_RateOfFire: 30
   m_Spray: 180
-  m_ProjectilesPerShot: 5
+  m_ProjectilesPerShot: 1
   m_FireEvent:
     m_PersistentCalls:
       m_Calls: []

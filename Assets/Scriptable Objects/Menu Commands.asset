@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Menu Commands
   m_EditorClassIdentifier: 
   m_SceneList: {fileID: 11400000, guid: d810e34ad1f659d4d88be683c14475c9, type: 2}
-  m_Mixer: {fileID: 0}
-  m_MasterFaderParameter: 
+  m_Mixer: {fileID: 24100000, guid: 381f0b59ee690b04f8d72b0cb784bd94, type: 2}
+  m_MasterFaderParameter: mainvolume

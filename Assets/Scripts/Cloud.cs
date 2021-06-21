@@ -12,7 +12,9 @@ public sealed class Cloud : MonoBehaviour
     {
         // If something enters the cloud, display the collision fx.
         m_ImpactFX.transform.position = collision.transform.position;
-        m_ImpactFX.transform.rotation = Quaternion.Euler(0f, 0f, 180f) * collision.transform.rotation;
+        m_ImpactFX.transform.rotation = collision.attachedRigidbody
+            ? Quaternion.LookRotation(Vector3.forward, collision.attachedRigidbody.velocity) * Quaternion.Euler(0f, 0f, 180f)
+            : collision.transform.rotation * Quaternion.Euler(0f, 0f, 180f);
         m_ImpactFX.Play();
     }
 
@@ -20,7 +22,10 @@ public sealed class Cloud : MonoBehaviour
     {
         // If something exits the cloud, display the collision fx.
         m_ImpactFX.transform.position = collision.transform.position;
-        m_ImpactFX.transform.rotation = collision.transform.rotation;
+        m_ImpactFX.transform.rotation = collision.attachedRigidbody
+            ? Quaternion.LookRotation(Vector3.forward, collision.attachedRigidbody.velocity)
+            : collision.transform.rotation * Quaternion.Euler(0f, 0f, 180f);
+
         m_ImpactFX.Play();
     }
 }
