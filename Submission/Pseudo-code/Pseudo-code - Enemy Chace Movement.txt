@@ -1,0 +1,22 @@
+Enemy Chase Behaviour Pseudo-code
+
+
+------------------------------------------------ Movement ------------------------------------------------
+
+in target
+
+in fireDot
+in chaseDot
+
+directionToTarget = target.position - position
+
+dot = dot(directionToTarget, up);
+
+if dot > fireDot
+	FireWeapons()
+	
+if dot > chaseDot
+	cross = cross(directionToTarget, up).z
+	steering = cross * steerSpeed
+else
+	steering = 0;

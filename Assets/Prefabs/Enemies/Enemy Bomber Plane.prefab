@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2454198804121087361}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.582, y: -0.256, z: 1}
+  m_LocalPosition: {x: 0.582, y: -0.256, z: 0.069}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7820940928866426812}
@@ -164,7 +164,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5200694684006796090}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.329, y: -0.138, z: 1}
+  m_LocalPosition: {x: -0.329, y: -0.138, z: 0.069}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7820940928866426812}
@@ -303,7 +303,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5895474634423711651}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.329, y: -0.138, z: 1}
+  m_LocalPosition: {x: 0.329, y: -0.138, z: 0.069}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7820940928866426812}
@@ -440,7 +440,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7216611234042854737}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -448,8 +448,8 @@ Transform:
   - {fileID: 4844902386503904157}
   - {fileID: 8207071883135636587}
   - {fileID: 490694640935854691}
-  m_Father: {fileID: 8262750613975274995}
-  m_RootOrder: 2
+  m_Father: {fileID: 8440192767697622352}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8262750613098277852
 GameObject:
@@ -571,7 +571,6 @@ Transform:
   m_Children:
   - {fileID: 8440192767697622352}
   - {fileID: 8262750613272440798}
-  - {fileID: 7820940928866426812}
   - {fileID: 770404641997448331}
   - {fileID: 3620909619826295433}
   m_Father: {fileID: 0}
@@ -700,6 +699,12 @@ MonoBehaviour:
   m_DeathUnityEvent:
     m_PersistentCalls:
       m_Calls: []
+  m_EnterWaterEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ExitWaterEvent:
+    m_PersistentCalls:
+      m_Calls: []
   m_DestructionFX: {fileID: 770404641997448330}
   m_CanSurviveInWater: 0
   m_WaterSurvivalDuration: 1
@@ -746,7 +751,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8262750614375709497}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.582, y: -0.256, z: 1}
+  m_LocalPosition: {x: -0.582, y: -0.256, z: 0.069}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7820940928866426812}
@@ -869,7 +874,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2233152903080459632, guid: ce2e3d8ad43cfd94e8ab57c6cd0f7fec, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2233152903080459632, guid: ce2e3d8ad43cfd94e8ab57c6cd0f7fec, type: 3}
       propertyPath: m_LocalRotation.x
@@ -903,7 +908,7 @@ PrefabInstance:
       objectReference: {fileID: -8195133734770609431, guid: 7022dc1da16903d4aac257520dc5fbe4, type: 3}
     - target: {fileID: 6167526782293340053, guid: e8c91cd082df6c54ca40ee9a9c8ec934, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8c91cd082df6c54ca40ee9a9c8ec934, type: 3}

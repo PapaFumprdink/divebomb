@@ -43,7 +43,7 @@ public sealed class PlayerController : MonoBehaviour, IMovementProvider, IWeapon
     {
         m_HealthComponent = GetComponent<IDamagable>();
 
-        m_GameOverMenu.SetActive(false);
+        if (m_GameOverMenu) m_GameOverMenu.SetActive(false);
         m_HealthComponent.DeathEvent += (damage, damager, point, direction) => m_GameOverMenu.SetActive(true);
 
         // Store the main Camera for performance

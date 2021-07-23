@@ -230,7 +230,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 692104495462049452, guid: 08c538e6d85d0e742a21384513bbbc74, type: 3}
       propertyPath: InitialModule.startSize.scalar
-      value: 0.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 692104495462049452, guid: 08c538e6d85d0e742a21384513bbbc74, type: 3}
       propertyPath: ClampVelocityModule.drag.scalar
