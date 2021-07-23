@@ -99,6 +99,55 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ImpactFX: {fileID: 3425816517373083452}
+  m_ImpactFXScale:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.25
+      inSlope: 0.00875
+      outSlope: 0.00875
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 200
+      value: 2
+      inSlope: 0.00875
+      outSlope: 0.00875
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  m_SizeVariation: 0.5
+  m_ImpactFXSpeed:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: -0.017170466
+      outSlope: -0.017170466
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.04119031
+    - serializedVersion: 3
+      time: 200
+      value: 300
+      inSlope: 1.7119423
+      outSlope: 1.7119423
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.043376084
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!60 &3425816517253843356
 PolygonCollider2D:
   m_ObjectHideFlags: 0
