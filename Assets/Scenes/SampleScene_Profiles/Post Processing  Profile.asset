@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44ed7ed9cdba5c43a5f59e60ec465a6, type: 3}
   m_Name: Distortion
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   enabled:
     overrideState: 1
     value: 1
@@ -38,6 +38,29 @@ MonoBehaviour:
   settings:
   - {fileID: 5929102577594107845}
   - {fileID: -7192152302173543815}
+  - {fileID: 637054378297777826}
+--- !u!114 &637054378297777826
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7797bacd05b3384439de83343c967ca2, type: 3}
+  m_Name: Outline
+  m_EditorClassIdentifier: 
+  active: 1
+  enabled:
+    overrideState: 1
+    value: 1
+  m_OutlineColor:
+    overrideState: 1
+    value: {r: 1, g: 1, b: 1, a: 1}
+  m_OutlineSize:
+    overrideState: 1
+    value: 2
 --- !u!114 &5929102577594107845
 MonoBehaviour:
   m_ObjectHideFlags: 3

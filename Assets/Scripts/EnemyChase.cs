@@ -30,6 +30,7 @@ public sealed class EnemyChase : EnemyBase, IMovementProvider
         {
             // Calculate the dot to the target to dictate how close it is to facing the target. 
             Vector2 vectorToTarget = (CurrentTarget.transform.position - transform.position);
+            ProcessMovementDirection(ref vectorToTarget);
             float dotToTarget = Vector2.Dot(vectorToTarget.normalized, transform.up);
 
             // If we are out of flee range, go back to chasing

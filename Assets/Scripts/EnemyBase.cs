@@ -6,6 +6,11 @@ using UnityEngine;
 [DisallowMultipleComponent]
 public abstract class EnemyBase : MonoBehaviour, IWeaponProvider
 {
+    [SerializeField] private float m_WaterAvoidanceDistance;
+
+    [Space]
+    [SerializeField] private float normalizedDistanceToWater;
+
     public static List<EnemyBase> EnemyInstances { get; private set; } = new List<EnemyBase>();
 
     protected EnemyChaceDebugData m_DebugData;
@@ -34,6 +39,12 @@ public abstract class EnemyBase : MonoBehaviour, IWeaponProvider
             Handles.Label(drawPosition, debugText, style);
 #endif
         }
+    }
+
+    protected void ProcessMovementDirection (ref Vector2 vector)
+    {
+        normalizedDistanceToWater = Mathf.Abs(Water.SurfaceWaterLevel - transform.position.y) / m_WaterAvoidanceDistance;
+        vector = Vector2.Lerp(Vector2.up, vector, normalizedDistanceToWater).normalized * vector.magnitude;
     }
 
     protected virtual void OnEnable ()

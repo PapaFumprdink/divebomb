@@ -5097,6 +5097,7 @@ GameObject:
   - component: {fileID: 8665086742680576351}
   - component: {fileID: 8665086742680576348}
   - component: {fileID: 6157651495944341470}
+  - component: {fileID: 8772183270683146968}
   m_Layer: 0
   m_Name: Preditor Projectile
   m_TagString: Untagged
@@ -5163,6 +5164,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!58 &8772183270683146968
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8665086742680576350}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.2
 --- !u!1001 &1127257255175707499
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -11,6 +11,9 @@ public sealed class WeaponGuage : MonoBehaviour
     [Space]
     [SerializeField] private AnimationCurve m_CooldownFinishScale;
 
+    [Space]
+    [SerializeField] private GameObject m_ContextIndicator;
+
     private float m_LastCooldownFinishTime;
     private float m_PreviousCooldown;
 
@@ -27,5 +30,7 @@ public sealed class WeaponGuage : MonoBehaviour
         m_FillElement.transform.localScale = Vector3.one * m_CooldownFinishScale.Evaluate(Time.time - m_LastCooldownFinishTime);
 
         m_PreviousCooldown = m_Target.NormalizedCooldown;
+
+        m_ContextIndicator.SetActive(m_Target.NormalizedCooldown < 0.01f);
     }
 }

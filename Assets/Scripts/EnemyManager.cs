@@ -41,6 +41,9 @@ public sealed class EnemyManager : MonoBehaviour
     [Space]
     [SerializeField] private float m_WaterLevel;
 
+    [Space]
+    [SerializeField] private PointsDisplay m_PointsDisplayPrefab;
+
     private float m_NextUpdateTime;
     private float m_GameTime;
 
@@ -212,6 +215,7 @@ public sealed class EnemyManager : MonoBehaviour
             damagable.DeathEvent += (damage, damager, point, direction) =>
             {
                 m_ScoreCounter.AddScore(profile.deathScore);
+                Instantiate(m_PointsDisplayPrefab, point, Quaternion.identity).Points = profile.deathScore;
             };
         }
 

@@ -51,3 +51,4 @@ MonoBehaviour:
   m_CloudPopulation: 15
   m_CloudScaleVariation: {x: 0.8, y: 1.5}
   m_WaterLevel: -10
+  m_CloudZOffset: 10

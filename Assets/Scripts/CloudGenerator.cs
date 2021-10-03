@@ -13,6 +13,9 @@ public sealed class CloudGenerator : MonoBehaviour
 
     [SerializeField] private float m_WaterLevel;
 
+    [Space]
+    [SerializeField] private float m_CloudZOffset;
+
     private List<GameObject> m_CloudInstances;
     private Camera m_MainCamera;
 
@@ -26,8 +29,9 @@ public sealed class CloudGenerator : MonoBehaviour
         {
             // Get a random prefab from out list.
             GameObject prefab = m_CloudPrefabList[Random.Range(0, m_CloudPrefabList.Length)];
-            Vector2 cloudPosition = (Vector2)m_MainCamera.transform.position + Random.insideUnitCircle * m_CloudSpawnDistance;
+            Vector3 cloudPosition = (Vector2)m_MainCamera.transform.position + Random.insideUnitCircle * m_CloudSpawnDistance;
             cloudPosition.y = Mathf.Max(cloudPosition.y, m_WaterLevel);
+            cloudPosition.z = m_CloudZOffset;
 
             // Spawn the new cloud and add it to our list.
             GameObject newCloud = Instantiate(prefab, cloudPosition, Quaternion.identity);

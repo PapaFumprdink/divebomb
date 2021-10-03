@@ -151,6 +151,7 @@ GameObject:
   - component: {fileID: 4684462044968753509}
   - component: {fileID: 7797490704903569383}
   - component: {fileID: 4684462044968753508}
+  - component: {fileID: 713502408337778801}
   m_Layer: 0
   m_Name: Flak Gun
   m_TagString: Untagged
@@ -234,6 +235,22 @@ MonoBehaviour:
   m_ArmTime: 0.25
   m_FuzeTime: 0.75
   m_ExplosionFX: {fileID: 5258139307366870992}
+--- !u!58 &713502408337778801
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4684462044968753511}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.2
 --- !u!1 &5258139307366870995
 GameObject:
   m_ObjectHideFlags: 0

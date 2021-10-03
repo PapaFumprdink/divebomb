@@ -292,7 +292,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 692104495462049452, guid: 08c538e6d85d0e742a21384513bbbc74, type: 3}
       propertyPath: InitialModule.startSize.scalar
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 692104495462049452, guid: 08c538e6d85d0e742a21384513bbbc74, type: 3}
       propertyPath: ClampVelocityModule.drag.scalar
@@ -301,6 +301,46 @@ PrefabInstance:
     - target: {fileID: 692104495462049452, guid: 08c538e6d85d0e742a21384513bbbc74, type: 3}
       propertyPath: InitialModule.startSpeed.scalar
       value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 692104495462049452, guid: 08c538e6d85d0e742a21384513bbbc74, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 692104495462049452, guid: 08c538e6d85d0e742a21384513bbbc74, type: 3}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[0].inSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 692104495462049452, guid: 08c538e6d85d0e742a21384513bbbc74, type: 3}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[1].inSlope
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 692104495462049452, guid: 08c538e6d85d0e742a21384513bbbc74, type: 3}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[0].outSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 692104495462049452, guid: 08c538e6d85d0e742a21384513bbbc74, type: 3}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[1].outSlope
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 692104495462049452, guid: 08c538e6d85d0e742a21384513bbbc74, type: 3}
+      propertyPath: ClampVelocityModule.drag.maxCurve.m_Curve.Array.data[1].time
+      value: 0.26696777
+      objectReference: {fileID: 0}
+    - target: {fileID: 692104495462049452, guid: 08c538e6d85d0e742a21384513bbbc74, type: 3}
+      propertyPath: ClampVelocityModule.drag.maxCurve.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 692104495462049452, guid: 08c538e6d85d0e742a21384513bbbc74, type: 3}
+      propertyPath: ClampVelocityModule.drag.maxCurve.m_Curve.Array.data[0].inSlope
+      value: 9.677183
+      objectReference: {fileID: 0}
+    - target: {fileID: 692104495462049452, guid: 08c538e6d85d0e742a21384513bbbc74, type: 3}
+      propertyPath: ClampVelocityModule.drag.maxCurve.m_Curve.Array.data[0].outSlope
+      value: 9.677183
+      objectReference: {fileID: 0}
+    - target: {fileID: 692104495462049452, guid: 08c538e6d85d0e742a21384513bbbc74, type: 3}
+      propertyPath: ClampVelocityModule.drag.maxCurve.m_Curve.Array.data[0].outWeight
+      value: 0.10655363
       objectReference: {fileID: 0}
     - target: {fileID: 692104495462049454, guid: 08c538e6d85d0e742a21384513bbbc74, type: 3}
       propertyPath: m_RootOrder
